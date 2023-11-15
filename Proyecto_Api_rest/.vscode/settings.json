@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+      "*.html": "html"
+    },
+    "python.analysis.typeCheckingMode": "off"
+  }

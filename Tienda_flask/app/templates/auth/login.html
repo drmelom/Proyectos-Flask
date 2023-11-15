@@ -1,0 +1,51 @@
+{% extends './base.html' %} {% block title %}Inicio de sesion{%endblock%}
+{% block customCSS%}
+<link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
+{% endblock %}
+
+{%block body %}
+<form class="form-signin w-100 m-auto" action="/login" method="POST">
+    
+    
+    <img class="mb-4" src="{{url_for('static',filename='img/Flask_logo.svg')}}" alt="" width="72" height="57">
+    <h1 class="h3 mb-3 fw-normal">Inicio de Sesi&oacute;n</h1>
+
+    <div class="form-floating">
+      <input type="text" class="form-control" id="usuario" placeholder="Usuario" name="usuario" minlength="5"
+       maxlength="20" required autofocus>
+      <label for="usuario">Usuario</label>
+    </div>
+    <br>
+    <div class="form-floating">
+      <input type="password" class="form-control" id="Password" placeholder="Password" name="password" required minlength="6">
+      <label for="Password">Password</label>
+    </div>
+    <br>
+
+    
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar Sesi&oacute;n</button>
+    
+    {% with messages = get_flashed_messages(with_categories=True ) %}
+    {% if messages %}
+    {% for category, message in messages %}
+    {% if category == 'warning' %}
+    <div class="alert alert-warning alert-dismissible fade show mt-3" role="alert">
+      {{message}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% else %}
+    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+      {{message}}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {%endif%}
+    {% endfor %}
+    {%endif %}
+    {% endwith %}
+    <p class="mt-5 mb-3 text-body-secondary">&copy; 2023</p>
+  </form> 
+
+{% block customJS %}
+<script src="{{ url_for('static',filename='js/login.js')}}"></script>
+{% endblock %}
+{%endblock%}
